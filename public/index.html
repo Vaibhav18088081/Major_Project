@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <base href="/"> -->
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"  />
+    <script src="https://kit.fontawesome.com/4fc31833c8.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <title>Safe Search Portal</title>
+  </head>
+
+  <body>
+    <div class="header w-full max-w-screen-2xl mx-auto flex flex-row md:justify-between justify-center" style="background-color: rgb(255, 255, 255)">
+        <div class="p-3 px-8 md:block hidden">
+            <img src="logo.png" alt="portal logo" style="width: 140px; height: 140px;"> <!-- Adjust the width and height values as needed -->
+        </div>
+        <div class="mx-auto text-center text-sm md:text-3xl font-bold md:w-1/3 w-full h-full flex flex-col p-12" style="height: 50%; background-color: rgb(255, 255, 255)">
+            <p style="color: #386ce7" class="text-lg md:text-xl">NATIONAL TRACKING SYSTEM</p>
+            <p style="color: #386ce7" class="line-around text-xs md:text-sm"><span>for</span></p>
+            <p style="color: #386ce7" class="text-sm md:text-lg">MISSING & VULNERABLE PEOPLE</p>
+        </div>
+
+
+        <div class="p-3 px-8 md:block hidden relative mt-12">
+            <button id="loginBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
+                Register/Login
+            </button>
+        </div>
+    </div>
+
+    <div class="nav" style="background-color: #395B64; color:white">
+        <div
+          class="flex w-full max-w-screen-xl items-center mx-auto flex lg:flex-row flex-col justify-between px-4 uppercase font-semibold"
+        >
+          <div class="cursor-pointer hover:underline"><i class="fa-solid fa-house py-3 pr-1"></i><a href={{url_for("home_route")}}>Home</a></div>
+          <div class="cursor-pointer hover:underline"><i class="fa-solid fa-circle-info py-3 pr-1"></i><a href={{url_for("about")}}>About</a></div>
+          <div class="cursor-pointer hover:underline"><i class="fa-solid fa-gavel py-3 pr-1"></i><a href={{url_for("law")}}>Related law</a></div>
+          <div class="cursor-pointer hover:underline"><i class="fa-solid fa-comment-dots py-3 pr-1"></i><a href={{url_for("feedback")}}>Feedback</a></div>
+          <div class="cursor-pointer hover:underline"><i class="fa-solid fa-phone py-3 pr-1"></i><a href={{url_for("contact")}}>contact us</a></div>
+        </div>
+    </div>
+
+
+
+    
+    <div class="container mx-auto my-8 flex flex-row justify-between">
+        <!-- Container 1 (Takes 40% of the width) -->
+        <div style="background-color: #E7F6F2;" class="w-2/5 p-6 mx-10">
+            <div class="flex items-center justify-between">
+                <h2 class="text-xl font-bold text-gray-800 inline">Report to find a missing person</h2>
+                <button id="expandForm1" onclick="toggleForm('reportForm1', 'expandForm1')" class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
+                    Click Here
+                </button>
+            </div>
+    
+            <!-- Form for Container 1 (Initially hidden, will be expanded by the button click) -->
+            <div id="reportForm1" class="hidden mt-4">
+                <form>
+                    <label for="uploadImage">Upload an image:</label>
+                    <input type="file" id="uploadImage" name="uploadImage" class="w-full py-2 px-3 border border-gray-300 rounded-md bg-gray-100 focus:outline-none focus:border-blue-500 focus:bg-white transition duration-300">
+    
+                    <label for="personName">Name:</label>
+                    <input type="text" id="personName" name="personName" class="w-full py-2 px-3 border border-gray-300 rounded-md bg-gray-100 focus:outline-none focus:border-blue-500 focus:bg-white transition duration-300">
+    
+                    <label for="personAge">Age:</label>
+                    <input type="text" id="personAge" name="personAge" class="w-full py-2 px-3 border border-gray-300 rounded-md bg-gray-100 focus:outline-none focus:border-blue-500 focus:bg-white transition duration-300">
+    
+                    <label for="personAddress">Address:</label>
+                    <input type="text" id="personAddress" name="personAddress" class="w-full py-2 px-3 border border-gray-300 rounded-md bg-gray-100 focus:outline-none focus:border-blue-500 focus:bg-white transition duration-300">
+    
+                    <label for="areaOfMissing">Area of missing:</label>
+                    <input type="text" id="areaOfMissing" name="areaOfMissing" class="w-full py-2 px-3 border border-gray-300 rounded-md bg-gray-100 focus:outline-none focus:border-blue-500 focus:bg-white transition duration-300">
+    
+                    <label for="missingDateTime">Date and Time of Missing:</label>
+                    <input type="datetime-local" id="missingDateTime" name="missingDateTime" class="w-full py-2 px-3 border border-gray-300 rounded-md bg-gray-100 focus:outline-none focus:border-blue-500 focus:bg-white transition duration-300">
+    
+                    <label for="personColor">Color of person:</label>
+                    <input type="text" id="personColor" name="personColor" class="w-full py-2 px-3 border border-gray-300 rounded-md bg-gray-100 focus:outline-none focus:border-blue-500 focus:bg-white transition duration-300">
+    
+                    <label for="personHeight">Height:</label>
+                    <input type="text" id="personHeight" name="personHeight" class="w-full py-2 px-3 border border-gray-300 rounded-md bg-gray-100 focus:outline-none focus:border-blue-500 focus:bg-white transition duration-300">
+    
+                    <button type="submit" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline-blue active:bg-blue-800 mx-auto">Submit</button>
+                </form>
+            </div>
+        </div>
+    
+        <!-- Container 2 (Takes 40% of the width, Previous place) -->
+        <div style="background-color: #E7F6F2;" class="w-2/5 p-6 mx-10">
+            <div class="flex items-center justify-between">
+                <h2 class="text-xl font-bold text-gray-800 inline">Find any Missing Person</h2>
+                <button id="expandForm2" onclick="toggleForm('reportForm2', 'expandForm2')" class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
+                    Click Here
+                </button>
+            </div>
+    
+            <!-- Form for Container 2 (Initially hidden, will be expanded by the button click) -->
+            <div id="reportForm2" class="hidden mt-4">
+                <form>
+                    <label for="uploadImage">Upload an image:</label>
+                    <input type="file" id="uploadImage" name="uploadImage" class="w-full py-2 px-3 border border-gray-300 rounded-md bg-gray-100 focus:outline-none focus:border-blue-500 focus:bg-white transition duration-300">
+    
+                    <label for="personName">Name:</label>
+                    <input type="text" id="personName" name="personName" class="w-full py-2 px-3 border border-gray-300 rounded-md bg-gray-100 focus:outline-none focus:border-blue-500 focus:bg-white transition duration-300">
+    
+                    <label for="personAge">Age:</label>
+                    <input type="text" id="personAge" name="personAge" class="w-full py-2 px-3 border border-gray-300 rounded-md bg-gray-100 focus:outline-none focus:border-blue-500 focus:bg-white transition duration-300">
+    
+                    <label for="personAddress">Address of found that person:</label>
+                    <input type="text" id="personAddress" name="personAddress" class="w-full py-2 px-3 border border-gray-300 rounded-md bg-gray-100 focus:outline-none focus:border-blue-500 focus:bg-white transition duration-300">
+    
+                    <label for="areaOfMissing">Nearby Police Station:</label>
+                    <br>
+
+                    <label for="country">Country:</label>
+                    <select id="country" >
+                        <option value="Select Country">Select Counrty</option>
+                        <option value="India">India</option>
+                        <!-- Add more countries as needed -->
+                    </select>
+                    <br>
+
+                    <label for="State">State:</label>
+                    <select id="States" >
+                        <option value="Select State">Select State</option>
+                        <option value="India">Uttar Pradesh</option>
+                        <!-- Add more countries as needed -->
+                    </select>
+                    <br>
+                       
+            
+                    <label for="District">District:</label>
+                    <select id="District" >
+                        <option value="Select District">Select District</option>
+                        <option value="India">Ghaziabad</option>
+                        <!-- Add more countries as needed -->
+                    </select>
+                    <br>
+
+                    <label for="Police Station">Police Station:</label>
+                    <select id="Police Station" >
+                        <option value="Select Police Station">Select Police Station</option>
+                        <option value="Indrapuram">Indrapuram</option>
+                        <option value="Kavi Nagar">Kavi Nagar</option>
+                        <option value="Khoda Makanpur">Khoda Makanpur</option>
+                        <option value="Kotwali">Kotwali</option>
+                        <option value="Link Road">Link Road</option>
+                        <option value="Sihani Gate">Sihani Gate</option>
+                        <option value="Vijay Nagar">Vijay Nagar</option>
+                        <!-- Add more countries as needed -->
+                    </select>
+                    <br>
+    
+                    <label for="missingDateTime">Date and Time of found that person:</label>
+                    <input type="datetime-local" id="missingDateTime" name="missingDateTime" class="w-full py-2 px-3 border border-gray-300 rounded-md bg-gray-100 focus:outline-none focus:border-blue-500 focus:bg-white transition duration-300">
+    
+                    <label for="personColor">Color of person:</label>
+                    <input type="text" id="personColor" name="personColor" class="w-full py-2 px-3 border border-gray-300 rounded-md bg-gray-100 focus:outline-none focus:border-blue-500 focus:bg-white transition duration-300">
+    
+                    <label for="personHeight">Height:</label>
+                    <input type="text" id="personHeight" name="personHeight" class="w-full py-2 px-3 border border-gray-300 rounded-md bg-gray-100 focus:outline-none focus:border-blue-500 focus:bg-white transition duration-300">
+    
+                    <button type="submit" class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline-blue active:bg-blue-800 mx-auto">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Additional divs with images, headings, and "Click Here" buttons -->
+    <br>
+    <br>
+    
+    
+    <div class="flex justify-between mx-10 mb-8">
+        <div style="background-color: #E7F6F2;" class="w-2/5 flex flex-col items-center">
+            <img src="miss.jpeg" alt="Image 1" class="w-full h-auto mb-2">
+            <h3 class="text-lg font-bold">PHOTOGRAPHS OF "MISSING" PERSONS/CHILDERN</h3>
+            <h4 class="text-lg">Kindly inform if you have seen these childern/persons</h4>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline-blue active:bg-blue-800 mt-2">Click Here</button>
+        </div>
+        <div style="background-color: #E7F6F2;" class="w-2/5 flex flex-col items-center">
+            <img src="recover.jpeg" alt="Image 2" class="w-full h-auto mb-2">
+            <h3 class="text-lg font-bold">PHOTOGRAPHS OF "RECOVERED" PERSONS/CHILDERN</h3>
+            <h4 class="text-lg"> Try to locate the Family Members of these childern/persons</h4>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline-blue active:bg-blue-800 mt-2">Click Here</button>
+        </div>
+    </div>
+   
+
+
+
+
+
+    
+    <script>
+        function toggleForm(formId, buttonId) {
+            var formContainer = document.getElementById(formId);
+            formContainer.classList.toggle("hidden");
+    
+            var button = document.getElementById(buttonId);
+            button.classList.toggle("active-radio", !formContainer.classList.contains("hidden"));
+
+            
+        }
+
+
+
+     
+
+
+    </script>
+    
+    
+    
+
+
+
+
+
+    <footer class="text-white body-font" style="background-color: #395B64 ; margin-top: 40px">
+        <div class="container px-5 py-16 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
+          <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left md:mt-0 mt-10">
+            <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+                <img src="logo.png" alt="logo" class="w-20 h-20 rounded-full ">
+              <span class="ml-3 text-2xl text-white">Safe Search</span>
+            </a>
+            <p class="mt-2 text-base text-white">A National Tracking system for Vulnerable and missing people</p>
+          </div>
+          <div class="flex-grow flex flex-wrap md:pr-20 -mb-10 md:text-left text-center order-first">
+            <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+              <h2 class="title-font text-xl font-medium text-white tracking-widest text-sm mb-3">INFORMATION</h2>
+              <nav class="list-none mb-10">
+                <li>
+                  <a class=" text-base text-white hover:underline">About The Initiative</a>
+                </li>
+                <li>
+                    <a class="text-base text-white hover:underline">Objectives</a>
+                  </li>
+                  <li>
+                    <a class="text-base text-white hover:underline">Important Legistations and Orders</a>
+                  </li>
+                  <li>
+                    <a class="text-base text-white hover:underline">Your Local Help</a>
+                  </li>
+              </nav>
+            </div>
+            <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+                <h2 class="title-font text-xl font-medium text-white tracking-widest text-sm mb-3">KEY CONTACTS</h2>
+                <nav class="list-none mb-10">
+                  <li>
+                    <a class="text-base text-white hover:underline">Administrative</a>
+                  </li>
+                  <li>
+                      <a class="text-base text-white hover:underline">Nodal Officers</a>
+                    </li>
+                    <li>
+                      <a class="text-base text-white hover:underline">Contact Persons Of States</a>
+                    </li>
+                </nav>
+              </div>
+              <div class="lg:w-1/4 md:w-1/2 w-full px-4">
+                <h2 class="title-font text-xl font-medium text-white tracking-widest text-sm mb-3">TECHNICAL HELP</h2>
+                <nav class="list-none mb-10">
+                  <li>
+                    <a class=" text-base text-white hover:underline">Tech Support</a>
+                  </li>
+                </nav>
+              </div>
+          </div>
+        </div>
+        <div style="background-color: #E7F6F2">
+          <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
+            <p class="text-black text-base text-center sm:text-left">© 2023 Safe Search —
+              <a href="#index.html" rel="noopener noreferrer" class="text-black ml-1 text-base" target="_blank">@SafeSearchPortal</a>
+            </p>
+            <span class="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
+              <a href="https://www.facebook.com/" class="text-black">
+                <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                </svg>
+              </a>
+              <a href="https://twitter.com/i/flow/login" class="ml-3 text-black">
+                <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                </svg>
+              </a>
+              <a href="https://www.instagram.com/accounts/emailsignup/" class="ml-3 text-black">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+                </svg>
+              </a>
+              <a href="https://www.linkedin.com/" class="ml-3 text-black">
+                <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+                  <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                  <circle cx="4" cy="4" r="2" stroke="none"></circle>
+                </svg>
+              </a>
+            </span>
+          </div>
+        </div>
+      </footer>
+    
+    </body>
+  
+    </html>
+
+
+
+
+    
